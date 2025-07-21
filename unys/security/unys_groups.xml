@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record model="res.groups" id="group_unys_cajero">
+            <field name="name">UNYS / Cajero</field>
+            <field name="category_id" ref="base.module_category_uncategorized"/>
+        </record>
+        <record model="res.groups" id="group_unys_socio">
+            <field name="name">UNYS / Socio</field>
+            <field name="category_id" ref="base.module_category_uncategorized"/>
+        </record>
+    </data>
+</odoo>

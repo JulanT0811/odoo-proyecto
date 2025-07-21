@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_unys_cuenta_cajero,unys.cuenta.cajero,model_unys_cuenta,unys.group_unys_cajero,1,1,1,1
+access_unys_cuenta_socio,unys.cuenta.socio,model_unys_cuenta,unys.group_unys_socio,1,0,0,0
+access_unys_transferencias_socio,unys.transferencias.socio,model_unys_transferencias,unys.group_unys_socio,1,1,1,0
+access_unys_operaciones_cajero,unys.operaciones.cajero,model_unys_operaciones,unys.group_unys_cajero,1,1,1,1
+access_unys_movimientos_cajero,unys.movimientos.cajero,model_unys_movimientos,unys.group_unys_cajero,1,1,1,0

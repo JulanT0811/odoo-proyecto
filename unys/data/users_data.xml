@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data> 
+     <record model="ir.module.category" id="unys_category">
+       <field name="name">Usuarios Cooperativa</field>
+       <field name="description"> Sistema de cooperativa de ahorro y credito</field>
+       <field name="sequence">10</field>
+     </record>
+
+     <record model="res.groups" id="unys_socios">
+       <field name="name">Socios</field>
+       <field name="category_id" ref="unys_category"/>
+     </record>
+
+     <record model="res.groups" id="unys_cajero">
+       <field name="name">Cajero</field>
+       <field name="category_id" ref="unys_category"/>
+     </record>
+
+     <record model="res.groups" id="unys_contador">
+       <field name="name">Contador</field>
+       <field name="category_id" ref="unys_category"/>
+     </record>
+
+     <record model="res.groups" id="unys_admin">
+       <field name="name">Administrador</field>
+       <field name="category_id" ref="unys_category"/>
+     </record>
+
+     <record model="res.groups" id="unys_agente">
+       <field name="name">Agente de cuenta</field>
+       <field name="category_id" ref="unys_category"/>
+     </record>
+
+     <record model="res.groups" id="unys_asesor">
+       <field name="name">Asesor</field>
+       <field name="category_id" ref="unys_category"/>
+     </record>
+   </data>
+    
+
+</odoo>

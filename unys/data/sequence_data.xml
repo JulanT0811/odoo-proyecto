@@ -1,0 +1,31 @@
+<odoo>
+    <data noupdate="1">
+       
+        <record id="seq_unys_cuenta" model="ir.sequence">
+            <field name="name">Secuencia numeros de cuentas</field>
+            <field name="code">unys.cuenta</field>
+            <field name="prefix">UNYS-%(year)s-</field>
+            <field name="suffix">-%(month)s</field>
+            <field name="padding">9</field>
+            <field name="use_date_range">False</field>
+            </record>
+
+        
+        <record id="seq_unys_transferencia" model="ir.sequence">
+            <field name="name">UNYS Transferencia Sequence</field>
+            <field name="code">unys.transferencia</field>
+            <field name="prefix">TRANS</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        
+        <record id="seq_unys_prestamos" model="ir.sequence">
+            <field name="name">UNYS Préstamos Sequence</field>
+            <field name="code">unys.prestamos</field>
+            <field name="prefix">PREST</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

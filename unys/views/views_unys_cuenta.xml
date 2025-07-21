@@ -1,0 +1,176 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="unys_cuentas_list">
+      <field name="name">unys cuenta list</field>
+      <field name="model">unys.cuenta</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="numero_cuenta"/>
+          <field name="socio_id"/>
+          <field name="fecha_apertura"/>
+          <field name="saldo_actual"/>
+          <field name="tipo_cuenta"/>
+          <field name="estado"/>
+          <field name="user_id"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="unys_cuentas_form">
+      <field name="name">unys cuenta form</field>
+      <field name="model">unys.cuenta</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+            
+              <field name="numero_cuenta" readonly="1" default_value="Nuevo"/>
+              <field name="socio_id" default_focus="1"/> 
+              <field name="saldo_actual"/>
+              <field name="fecha_apertura" readonly="1"/>
+              <field name="tipo_cuenta"/>
+              <field name="estado" readonly="1"/>
+              <field name="user_id" readonly="1"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="unys_cuenta_action_window">
+      <field name="name">Cuentas Socios</field>
+      <field name="res_model">unys.cuenta</field>
+      <field name="domain">[('user_id', '=', uid)]</field>
+      <field name="view_mode">list,form</field>
+    </record>
+    
+    <menuitem id="menu_unys_root"
+              name="UNYS"
+              sequence="10"
+              groups="unys.group_unys_cajero,unys.group_unys_socio"/>
+
+    <menuitem name="Cuenta"
+              id="unys_cuenta"
+              parent="menu_unys_root" 
+              action="unys_cuenta_action_window"/>
+
+
+    <record model="ir.ui.view" id="unys_transferencias_form">
+        <field name="name">unys Transferencias form</field>
+        <field name="model">unys.transferencias</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="cuenta_origen_id"/>
+                        <field name="cuenta_destino_id"/>
+                        <field name="codigo_transferencia" readonly="1"/>
+                        <field name="monto"/>
+                        <field name="fecha_transferencia"/>
+                        <field name="estado"/>
+                        <field name="referencia"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="unys_transferencias_list">
+        <field name="name">unys Transferencias list</field>
+        <field name="model">unys.transferencias</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="codigo_transferencia"/>
+                <field name="cuenta_origen_id"/>
+                <field name="cuenta_destino_id"/>
+                <field name="monto"/>
+                <field name="fecha_transferencia"/>
+                <field name="estado"/>
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="unys_transferencias_action_window">
+        <field name="name">Transferencias</field>
+        <field name="res_model">unys.transferencias</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    
+    <menuitem name="Transferencias"
+              id="unys_transferencias_menu"
+              parent="unys.menu_unys_root"
+              action="unys_transferencias_action_window"
+              groups="unys.group_unys_socio"/>
+
+    
+    <record model="ir.ui.view" id="unys_prestamos_form">
+        <field name="name">unys Préstamos form</field>
+        <field name="model">unys.prestamos</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="cuenta_id"/>
+                        <field name="socio_id"/>
+                        <field name="monto_solicitado"/>
+                        <field name="fecha_solicitud"/>
+                        <field name="estado" widget="statusbar" statusbar_visible="solicitado,aprobado,desembolsado,pagado"/>
+                    </group>
+                    <group>
+                        <field name="monto_aprobado" invisible="estado in ['solicitado', 'rechazado']"/>
+                        <field name="fecha_aprobacion" invisible="estado in ['solicitado', 'rechazado']"/>
+                        <field name="fecha_vencimiento" invisible="estado in ['solicitado', 'rechazado']"/>
+                        <field name="interes"/>
+                        <field name="cuotas"/>
+                        <field name="saldo_pendiente"/>
+                    </group>
+                    <notebook>
+                        <page string="Descripción">
+                            <field name="descripcion"/>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="action_aprobar_prestamo" type="object" string="Aprobar" class="oe_highlight" invisible="estado != 'solicitado'"/>
+                        <button name="action_rechazar_prestamo" type="object" string="Rechazar" invisible="estado != 'solicitado'"/>
+                        <button name="action_desembolsar_prestamo" type="object" string="Desembolsar" class="oe_highlight" invisible="estado != 'aprobado'"/>
+                        <button name="action_marcar_pagado" type="object" string="Marcar como Pagado" class="oe_highlight" invisible="estado != 'desembolsado'"/>
+                        <button string="Cancelar" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="unys_prestamos_list">
+        <field name="name">unys Préstamos list</field>
+        <field name="model">unys.prestamos</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="cuenta_id"/>
+                <field name="socio_id"/>
+                <field name="monto_solicitado"/>
+                <field name="fecha_solicitud"/>
+                <field name="interes"/> <field name="estado"/>
+                <field name="saldo_pendiente"/>
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="unys_prestamos_action_window">
+        <field name="name">Préstamos</field>
+        <field name="res_model">unys.prestamos</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+ 
+    <menuitem name="Préstamos"
+              id="unys_prestamos_menu"
+              parent="unys.menu_unys_root"
+              action="unys_prestamos_action_window"
+              groups="unys.group_unys_cajero"/>
+
+  </data>
+</odoo>

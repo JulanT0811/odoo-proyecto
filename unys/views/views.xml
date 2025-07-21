@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="Unys.list">
+      <field name="name">Unys list</field>
+      <field name="model">Unys.Unys</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="Unys.action_window">
+      <field name="name">Unys window</field>
+      <field name="res_model">Unys.Unys</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="unys.action_server">
+      <field name="name">Unys server</field>
+      <field name="model_id" ref="model_Unys_Unys"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="coacsemdos" id="Unys.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="unys.menu_1" parent="unys.menu_root"/>
+    <menuitem name="Menu 2" id="unys.menu_2" parent="unys.menu_root"/>
+-->
+    <!-- actions -->
+
+<!--<menuitem name="List" id="unys.menu_1_list" parent="unys.menu_1"
+              action="unys.action_window"/>
+    <menuitem name="Server to list" id="unys" parent="unys.menu_2"
+              action="unys.action_server"/> -->
+
+  </data>
+</odoo>
